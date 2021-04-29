@@ -2,6 +2,8 @@ package calculadora_arrays;
 
 import java.util.Scanner;
 
+import operaciones.Operaciones;
+
 /**
  * @author Yirsis Serrano
  *
@@ -9,7 +11,6 @@ import java.util.Scanner;
 public class Calculadora {
 
 	private static Scanner scanner = new Scanner(System.in);
-
 	private static double[] numeros1;
 	private static double[] numeros2;
 	private static double[] resultados;
@@ -18,66 +19,6 @@ public class Calculadora {
 	 * @param i = iterador
 	 *
 	 */
-	private static void setValores(int i) {
-		System.out.print("Ingresa el primer valor: ");
-		numeros1[i] = scanner.nextDouble();
-
-		System.out.print("Ingresa el segundo valor: ");
-		numeros2[i] = scanner.nextDouble();
-
-	}
-
-	private static void getResultados() {
-		System.out.println("\nResultados");
-		System.out.println("==========\n");
-
-		for (double resultado : resultados) {
-			System.out.println(resultado);
-		}
-	}
-
-	private static void sumar() {
-		for (int i = 0; i < numeros1.length; i++) {
-
-			System.out.println("Suma Numero #" + (i + 1));
-
-			setValores(i);
-
-			resultados[i] = numeros1[i] + numeros2[i];
-		}
-	}
-
-	private static void restar() {
-		for (int i = 0; i < numeros1.length; i++) {
-			System.out.println("Resta Numero #" + (i + 1));
-
-			setValores(i);
-
-			resultados[i] = numeros1[i] - numeros2[i];
-		}
-	}
-
-	private static void multiplicar() {
-		for (int i = 0; i < numeros1.length; i++) {
-
-			System.out.println("Multiplicacion Numero #" + (i + 1));
-
-			setValores(i);
-
-			resultados[i] = numeros1[i] * numeros2[i];
-		}
-	}
-
-	private static void dividir() {
-		for (int i = 0; i < numeros1.length; i++) {
-
-			System.out.println("Division Numero #" + (i + 1));
-
-			setValores(i);
-
-			resultados[i] = numeros1[i] / numeros2[i];
-		}
-	}
 
 	public static void main(String[] args) {
 
@@ -109,25 +50,27 @@ public class Calculadora {
 				numeros2 = new double[valores];
 				resultados = new double[valores];
 
+				Operaciones operaciones = new Operaciones(numeros1, numeros2, resultados);
+
 				switch (opcion) {
 				case 1:
-					sumar();
+					operaciones.sumar();
 					break;
 				case 2:
-					restar();
+					operaciones.restar();
 					break;
 				case 3:
-					multiplicar();
+					operaciones.multiplicar();
 					break;
 				case 4:
-					dividir();
+					operaciones.dividir();
 					break;
 				default:
 					System.err.println("Opcion Invalida, intenta otra vez...");
 					break;
 				}
 
-				getResultados();
+				operaciones.getResultados();
 				System.gc(); // esto limpia la memoria
 
 			} catch (Exception e) {

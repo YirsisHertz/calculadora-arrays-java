@@ -2,6 +2,10 @@ package calculadora_arrays;
 
 import java.util.Scanner;
 
+/**
+ * @author Yirsis Serrano
+ *
+ */
 public class Calculadora {
 
 	private static Scanner scanner = new Scanner(System.in);
@@ -10,6 +14,10 @@ public class Calculadora {
 	private static double[] numeros2;
 	private static double[] resultados;
 
+	/**
+	 * @param i = iterador
+	 *
+	 */
 	private static void setValores(int i) {
 		System.out.print("Ingresa el primer valor: ");
 		numeros1[i] = scanner.nextDouble();
@@ -120,7 +128,7 @@ public class Calculadora {
 				}
 
 				getResultados();
-				System.gc();
+				System.gc(); // esto limpia la memoria
 
 			} catch (Exception e) {
 				System.err.println("Seleccion invalida, intenta mas tarde...");
